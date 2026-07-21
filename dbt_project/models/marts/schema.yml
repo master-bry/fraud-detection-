@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: daily_fraud_summary
+    description: "Daily fraud summary by transaction type"
+    columns:
+      - name: transaction_date
+        description: "Date of transactions"
+        tests:
+          - not_null
+      - name: transaction_type
+        description: "Transaction type"
+        tests:
+          - not_null
+      - name: total_transactions
+        description: "Total number of transactions"
+      - name: fraud_count
+        description: "Number of fraudulent transactions"
+      - name: fraud_rate
+        description: "Percentage of fraudulent transactions"

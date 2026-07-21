@@ -1,0 +1,26 @@
+name: 'fraud_detection'
+version: '1.0.0'
+config-version: 2
+
+profile: 'fraud_detection'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  fraud_detection:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+vars:
+  start_date: "2023-01-01"

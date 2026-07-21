@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: transactions_bronze
+        description: "Raw transactions ingested from Kafka"
+        columns:
+          - name: id
+            description: "Primary key"
+            tests:
+              - unique
+              - not_null
+          - name: type
+            description: "Transaction type"
+          - name: amount
+            description: "Transaction amount"
+          - name: is_fraud
+            description: "Fraud label (0 or 1)"
+
+      - name: transactions_silver
+        description: "Validated and enriched transactions"
+        columns:
+          - name: id
+            description: "Primary key"
+            tests:
+              - unique
+              - not_null
+          - name: type
+            description: "Transaction type"
+          - name: amount
+            description: "Transaction amount"
+          - name: is_fraud
+            description: "Fraud label"
