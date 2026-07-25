@@ -215,3 +215,4 @@ def get_stats():
     except Exception as e:
         logger.error(f"Error fetching stats: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
