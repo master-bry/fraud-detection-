@@ -89,7 +89,6 @@ def health_check():
         scored_at=datetime.utcnow().isoformat(),
     )
 
-
 @app.post("/score", response_model=FraudScore)
 def score_transaction(tx: Transaction):
     if model_data is None:
