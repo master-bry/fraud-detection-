@@ -3,7 +3,6 @@ import pickle
 import logging
 from datetime import datetime
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import psycopg2
@@ -59,7 +58,6 @@ class Transaction(BaseModel):
     velocity_24h: float = 0.0
     amount_zscore: float = 0.0
     balance_ratio_orig: float = 0.0
-
 
 class FraudScore(BaseModel):
     fraud_probability: float
