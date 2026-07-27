@@ -147,7 +147,6 @@ def heuristic_score(tx: Transaction) -> float:
 
     return min(score, 1.0)
 
-
 def classify_risk(probability: float) -> str:
     if probability >= 0.7:
         return "HIGH"
@@ -155,6 +154,7 @@ def classify_risk(probability: float) -> str:
         return "MEDIUM"
     else:
         return "LOW"
+
 
 
 @app.get("/recent-fraud")
@@ -187,7 +187,6 @@ def get_recent_fraud(limit: int = 50):
     except Exception as e:
         logger.error(f"Error fetching recent fraud: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.get("/stats")
 def get_stats():
