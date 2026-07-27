@@ -205,6 +205,7 @@ def get_stats():
 
         conn.close()
 
+
         return {
             "total_transactions": total,
             "fraud_transactions": fraud_count,
