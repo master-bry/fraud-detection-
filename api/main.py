@@ -202,7 +202,6 @@ def get_stats():
 
         cur.execute("SELECT ROUND(AVG(amount), 2) FROM transactions_silver")
         avg_amount = cur.fetchone()[0]
-
         conn.close()
 
         return {
