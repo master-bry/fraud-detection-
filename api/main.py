@@ -19,7 +19,6 @@ POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "fraud_pass")
 
 model_data = None
 
-
 def load_model():
     global model_data
     if os.path.exists(MODEL_PATH):
@@ -28,7 +27,6 @@ def load_model():
         logger.info(f"Model loaded from {MODEL_PATH}")
     else:
         logger.warning(f"Model not found at {MODEL_PATH}, scoring will use heuristics")
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -79,7 +77,6 @@ def get_db_connection():
         user=POSTGRES_USER,
         password=POSTGRES_PASSWORD,
     )
-
 
 @app.get("/health", response_model=HealthResponse)
 def health_check():
