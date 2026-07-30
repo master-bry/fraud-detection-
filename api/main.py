@@ -78,6 +78,7 @@ def get_db_connection():
         password=POSTGRES_PASSWORD,
     )
 
+
 @app.get("/health", response_model=HealthResponse)
 def health_check():
     return HealthResponse(
