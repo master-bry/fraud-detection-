@@ -29,7 +29,7 @@ x-airflow-common: &airflow-common
 services:
   # --- Zookeeper ---
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.5.0
+    image: confluentinc/cp-zookeeper:7.4.0
     hostname: zookeeper
     container_name: zookeeper
     environment:
@@ -45,7 +45,7 @@ services:
 
   # --- Kafka ---
   kafka:
-    image: confluentinc/cp-kafka:7.5.0
+    image: confluentinc/cp-kafka:7.4.0
     hostname: kafka
     container_name: kafka
     depends_on:
@@ -129,11 +129,9 @@ services:
 
   # --- Spark Master ---
   spark-master:
-    image: bitnami/spark:3.5
+    image: apache/spark:3.5.4
     container_name: spark-master
-    environment:
-      SPARK_MODE: master
-      SPARK_MASTER_HOST: spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master --port 7077
     ports:
       - "8081:8080"
       - "7077:7077"
@@ -143,13 +141,9 @@ services:
 
   # --- Spark Worker ---
   spark-worker:
-    image: bitnami/spark:3.5
+    image: apache/spark:3.5.4
     container_name: spark-worker
-    environment:
-      SPARK_MODE: worker
-      SPARK_MASTER_URL: spark://spark-master:7077
-      SPARK_WORKER_MEMORY: 2g
-      SPARK_WORKER_CORES: 2
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port 8081 --memory 2g --cores 2 spark://spark-master:7077
     depends_on:
       - spark-master
     volumes:
